@@ -28,13 +28,10 @@ app.use("/transaction", transactionRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(
-    "mongodb+srv://willzxone:sD0Wwmu4bdjBPtjE@cluster0.tgyr22x.mongodb.net/?retryWrites=true&w=majority&appName=FinancialCheck",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(async () => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })
